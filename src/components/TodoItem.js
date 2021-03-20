@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 
-export function TodoItem() {
+export function TodoItem(props) {
 
   const [done, setDone] = useState(true);
 
@@ -13,7 +13,7 @@ export function TodoItem() {
 
   return (
     <div className="flex mb-4 items-center">
-      <p className={`w-full text-grey-darkest ${done ? null : 'line-through'}`}>Первая задача</p>
+      <p className={`w-full text-grey-darkest ${done ? null : 'line-through'}`}>{props.todo.task}</p>
       <button onClick={doneButton} className={`flex-no-shrink p-2 ml-4 mr-2 border-2 rounded hover:text-white ${done ? classDone : classNoDone}`}>{ done ? 'Готово' : 'Не готово' } </button>
       <button className="flex-no-shrink p-2 ml-2 border-2 rounded text-red-500 border-red-500 hover:text-white hover:bg-red-500">Удалить</button>
     </div>

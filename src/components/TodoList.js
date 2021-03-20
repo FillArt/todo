@@ -1,8 +1,10 @@
 import React from 'react';
 import { TodoItem } from "./TodoItem";
 
-export function TodoList() {
+export function TodoList(props) {
   return (
-    <TodoItem />
+    <>
+    {props.todos.map(item => <TodoItem key={item.id} todo={item} />)}
+    </>
   )
 }
