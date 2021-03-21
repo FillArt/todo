@@ -14,10 +14,12 @@ function App() {
     setTodos(oldList => [
       ...oldList,
       {
-        id: Date.now,
+        id: Date.now(),
         task: name,
       },
     ])
+
+    console.log(todos)
   }
 
   return (
@@ -29,7 +31,7 @@ function App() {
         </div>
         <div>
           {todos.map(item => (
-            <TodoItem key={item.id} todo={item} />
+            <TodoItem key={item.id} todo={item} set={setTodos} />
           ))}
         </div>
       </div>
