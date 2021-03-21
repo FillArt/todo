@@ -10,24 +10,14 @@ function App() {
     },
   ])
 
-  const addTodoList = name => {
-    setTodos(oldList => [
-      ...oldList,
-      {
-        id: Date.now(),
-        task: name,
-      },
-    ])
-
-    console.log(todos)
-  }
+  console.log(todos)
 
   return (
     <div className="h-100 w-full flex items-center justify-center bg-teal-lightest font-sans">
       <div className="bg-white rounded shadow p-6 m-4 w-full lg:w-3/4 ">
         <div className="mb-4">
           <h1 className="text-grey-darkest">Cписок задач на React</h1>
-          <TodoInput add={addTodoList} />
+          <TodoInput add={setTodos} />
         </div>
         <div>
           {todos.map(item => (
