@@ -3,8 +3,16 @@ import Box from '@mui/material/Box';
 import {BaseInput} from "../../components/Input/Input";
 import {BaseButton} from "../../components/Button/Button";
 import ButtonGroup from '@mui/material/ButtonGroup';
+import {Filter, TodoControlProps} from "../../types/Todo";
 
-export const TodoControl = () => {
+export const TodoControl = (props: TodoControlProps) => {
+
+    const {filter, setFilter} = props;
+
+    const onClickFilter = (filter: Filter) => {
+        setFilter(filter);
+    }
+
     return (
         <>
             <Box sx={{
@@ -27,18 +35,18 @@ export const TodoControl = () => {
             }} variant="outlined" aria-label="Basic button group">
                 <BaseButton
                     title={'All'}
-                    variant={'outlined'}
-                    onClick={() => {alert('All')}} />
+                    variant={filter === 'All' ? 'contained' : 'outlined'}
+                    onClick={() => {onClickFilter('All')}} />
 
                 <BaseButton
                     title={'Active'}
-                    variant={'outlined'}
-                    onClick={() => {alert('Active')}} />
+                    variant={filter === 'Active' ? 'contained' : 'outlined'}
+                    onClick={() => {onClickFilter('Active')}} />
 
                 <BaseButton
                     title={'Done'}
-                    variant={'outlined'}
-                    onClick={() => {alert('Done')}} />
+                    variant={filter === 'Done' ? 'contained' : 'outlined'}
+                    onClick={() => {onClickFilter('Done')}} />
 
                 <BaseButton
                     title={'All Delete'}

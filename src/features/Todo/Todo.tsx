@@ -1,8 +1,9 @@
-import React from 'react';
+import React, {useState} from 'react';
 import {TodoList} from "./TodoList";
 import {TodoControl} from "./TodoControl";
 import Paper from '@mui/material/Paper';
 import { styled } from '@mui/material/styles';
+import {Filter} from "../../types/Todo";
 
 const Container = styled(Paper)(({ theme }) => ({
     width: 350,
@@ -11,9 +12,11 @@ const Container = styled(Paper)(({ theme }) => ({
 }));
 
 export const Todo = () => {
+    const [filter, setFilter] = useState<Filter>('All');
+
     return (
         <Container elevation={12}>
-            <TodoControl />
+            <TodoControl filter={filter} setFilter={setFilter} />
             <TodoList />
         </Container>
     );
