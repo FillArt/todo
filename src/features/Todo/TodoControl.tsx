@@ -1,11 +1,9 @@
 import React from 'react';
 
-const Button = () => {
+export const TodoControl = () => {
     return (
         <div>
-            
+
         </div>
     );
 };
-
-export default Button;
