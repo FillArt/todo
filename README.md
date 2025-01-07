@@ -32,7 +32,7 @@ Make sure you have the following installed:
 ### Installation:
 1. Clone the repository:
    ```bash
-   git clone https://github.com/<your-username>/todo.git
+   git clone https://github.com/FillArt/todo.git
    cd todo
    ```
 2. Install dependencies:
