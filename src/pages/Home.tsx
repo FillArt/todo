@@ -9,8 +9,17 @@ export const Home = (props: MainLayoutProps) => {
 
     const { children } = props;
 
+    const styleHome = {
+        backgroundColor: "#304ffe",
+        display: "flex",
+        alignItems: "center",
+        justifyContent: "center",
+        height: '100vh',
+        width: '100vw'
+    }
+
     return (
-        <div>
+        <div style={styleHome}>
             {children}
         </div>
     );
