@@ -11,5 +11,5 @@ export const BaseInput = (props: BaseInputProps) => {
 
     const onChangeHandler = (e: ChangeEvent<HTMLInputElement>) => setValue(e.target.value);
 
-    return <TextField id="outlined-basic" value={value} label={label} onChange={onChangeHandler} size="small" variant="outlined" />
+    return <TextField style={{ width: '100%' }} id="outlined-basic" value={value} label={label} onChange={onChangeHandler} size="small" variant="outlined" />
 };

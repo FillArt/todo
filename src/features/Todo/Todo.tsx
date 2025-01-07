@@ -5,7 +5,7 @@ import Paper from '@mui/material/Paper';
 import { styled } from '@mui/material/styles';
 
 const Container = styled(Paper)(({ theme }) => ({
-    width: 420,
+    width: 350,
     padding: theme.spacing(2),
     ...theme.typography.body2,
 }));
