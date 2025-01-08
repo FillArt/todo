@@ -23,7 +23,7 @@ export const TodoControl = (props: TodoControlProps) => {
             }}>
                 <BaseInput label={'Your task...'}/>
                 <ButtonBase
-                    title={'Send'}
+                    title={'Create'}
                     color={"success"}
                     variant={'contained'}
                     onClick={() => {alert('Send')}} />
