@@ -6,15 +6,34 @@ import EditIcon from "@mui/icons-material/Edit";
 import DeleteIcon from "@mui/icons-material/Delete";
 import CheckIcon from "@mui/icons-material/Check";
 import ListItem from "@mui/material/ListItem";
+import {TodoItemProps} from "../../types/Todo";
+import {BaseInput} from "../../components/Input/Input";
 
-export const TodoItem = () => {
+export const TodoItem = (props: TodoItemProps) => {
+    const {removeItem, changeItem, item} = props;
+    const [changeMode, setMode] = React.useState(false);
+    const [changeValue, setChangeValue] = React.useState(item.title);
+
+    const changeItemHandler = (id: string, title: string) => {
+        setMode(false);
+        changeItem(id, title)
+    }
+
     return (
-        <ListItem>
-            <ListItemText>Test</ListItemText>
+            <ListItem>
+                {changeMode ? <BaseInput label={''} value={changeValue} setValue={setChangeValue} /> : <ListItemText>{item.title}</ListItemText>}
+
             <ButtonGroup>
-                <ButtonIcon color="primary" onClick={() => alert('Edit')}><EditIcon /></ButtonIcon>
-                <ButtonIcon color="error" onClick={() => alert('Delete')}><DeleteIcon /></ButtonIcon>
-                <ButtonIcon color="success" onClick={() => alert('Did it')}><CheckIcon /></ButtonIcon>
+                {!changeMode ? (
+                    <>
+                    <ButtonIcon color="primary" onClick={() => setMode(true)}><EditIcon /></ButtonIcon>
+                    <ButtonIcon color="error" onClick={() => removeItem(item.id) }><DeleteIcon /></ButtonIcon>
+                    </>
+                    ) : null
+
+                }
+
+                <ButtonIcon color="success" onClick={() => changeItemHandler(item.id, changeValue)}><CheckIcon /></ButtonIcon>
             </ButtonGroup>
         </ListItem>
     );

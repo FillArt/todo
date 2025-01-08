@@ -1,15 +1,21 @@
-import {TsarType} from "../types/Todo";
+import {State, TsarType} from "../types/Todo";
+import {v1} from "uuid";
 
-export const todoReducer = (state: any, action: TsarType) => {
+export const todoReducer = (state: State[], action: TsarType): State[] => {
     switch (action.type) {
         case 'ADD-TODO': {
-            return state;
+            const newItem = {
+                id: v1(),
+                title: action.payload.title,
+                isDone: false
+            }
+            return [...state, newItem];
         }
         case 'REMOVE-TODO': {
-            return state;
+            return state.filter(item => item.id !== action.payload.id)
         }
         case 'CHANGE-TODO': {
-            return state;
+            return state.map(item => item.id === action.payload.id ? {...item, title: action.payload.title} : item);
         }
         case 'CHANGE-STATUS': {
             return state;
