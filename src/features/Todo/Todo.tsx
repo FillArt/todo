@@ -6,7 +6,7 @@ import Paper from '@mui/material/Paper';
 import { styled } from '@mui/material/styles';
 
 import {Filter} from "../../types/Todo";
-import {addTodo, changeTodo, removeTodo, todoReducer} from "../../reducers/todoReducer";
+import {addTodo, changeStatusTodo, changeTodo, removeTodo, todoReducer} from "../../reducers/todoReducer";
 
 const Container = styled(Paper)(({ theme }) => ({
     width: 350,
@@ -21,6 +21,7 @@ export const Todo = () => {
     const addNewItem = (title: string) => dispatchState(addTodo(title))
     const removeItem = (id: string) => dispatchState(removeTodo(id))
     const changeItem = (id: string, title: string) => dispatchState(changeTodo(id, title))
+    const changeStatusItem = (id: string, isDone: boolean) => dispatchState(changeStatusTodo(id, isDone))
 
     return (
         <Container elevation={12}>
@@ -33,6 +34,7 @@ export const Todo = () => {
                 state={state}
                 removeItem={removeItem}
                 changeItem={changeItem}
+                changeStatusItem={changeStatusItem}
             />
         </Container>
     );

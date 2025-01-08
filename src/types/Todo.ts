@@ -12,12 +12,14 @@ export type TodoListProps = {
     state: State[]
     removeItem: (id: string) => void,
     changeItem: (id: string, title: string) => void,
+    changeStatusItem: (id: string, isDone: boolean) => void,
 }
 
 export type TodoItemProps = {
     item: State
     removeItem: (id: string) => void,
     changeItem: (id: string, title: string) => void,
+    changeStatusItem: (id: string, isDone: boolean) => void,
 }
 
 export type State = {

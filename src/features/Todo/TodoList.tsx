@@ -10,7 +10,11 @@ export const TodoList = (props: TodoListProps) => {
     return (
         <List>
             {state && state.map(item => {
-                return <TodoItem item={item} changeItem={props.changeItem} removeItem={props.removeItem}/>
+                return <TodoItem
+                        item={item}
+                        changeStatusItem={props.changeStatusItem}
+                        changeItem={props.changeItem}
+                        removeItem={props.removeItem}/>
             })}
         </List>
 
