@@ -1,9 +1,16 @@
 import React from 'react';
+import List from '@mui/material/List';
+import {TodoItem} from "./TodoItem";
 
 export const TodoList = () => {
     return (
-        <div>
-            <h1>Loool</h1>
-        </div>
+        <List>
+
+            <TodoItem/>
+            <TodoItem/>
+            <TodoItem/>
+
+        </List>
+
     );
 };

@@ -1,7 +1,7 @@
 import React from 'react';
 import Box from '@mui/material/Box';
 import {BaseInput} from "../../components/Input/Input";
-import {BaseButton} from "../../components/Button/Button";
+import {ButtonBase} from "../../components/Button/Button";
 import ButtonGroup from '@mui/material/ButtonGroup';
 import {Filter, TodoControlProps} from "../../types/Todo";
 
@@ -22,7 +22,7 @@ export const TodoControl = (props: TodoControlProps) => {
                 marginBottom: '10px',
             }}>
                 <BaseInput label={'Your task...'}/>
-                <BaseButton
+                <ButtonBase
                     title={'Send'}
                     color={"success"}
                     variant={'contained'}
@@ -33,22 +33,22 @@ export const TodoControl = (props: TodoControlProps) => {
                 display: 'flex',
                 justifyContent: 'center',
             }} variant="outlined" aria-label="Basic button group">
-                <BaseButton
+                <ButtonBase
                     title={'All'}
                     variant={filter === 'All' ? 'contained' : 'outlined'}
                     onClick={() => {onClickFilter('All')}} />
 
-                <BaseButton
+                <ButtonBase
                     title={'Active'}
                     variant={filter === 'Active' ? 'contained' : 'outlined'}
                     onClick={() => {onClickFilter('Active')}} />
 
-                <BaseButton
+                <ButtonBase
                     title={'Done'}
                     variant={filter === 'Done' ? 'contained' : 'outlined'}
                     onClick={() => {onClickFilter('Done')}} />
 
-                <BaseButton
+                <ButtonBase
                     title={'All Delete'}
                     color={'error'}
                     variant={'contained'}
