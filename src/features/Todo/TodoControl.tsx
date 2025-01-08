@@ -55,7 +55,7 @@ export const TodoControl = (props: TodoControlProps) => {
                     title={'All Delete'}
                     color={'error'}
                     variant={'contained'}
-                    onClick={() => {alert('All Delete')}} />
+                    onClick={() => props.removeAllTasks()} />
             </ButtonGroup>
 
         </>

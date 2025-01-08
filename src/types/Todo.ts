@@ -6,6 +6,7 @@ export type TodoControlProps = {
     filter: Filter;
     setFilter: (filter: Filter) => void;
     addNewItem: (title: string) => void,
+    removeAllTasks: () => void,
 }
 
 export type TodoListProps = {

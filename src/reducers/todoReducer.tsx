@@ -21,7 +21,7 @@ export const todoReducer = (state: State[], action: TsarType): State[] => {
             return state.map(item => item.id === action.payload.id ? {...item, isDone: action.payload.isDone} : item);
         }
         case 'REMOVE-ALL': {
-            return state;
+            return [];
         }
 
         default: {
