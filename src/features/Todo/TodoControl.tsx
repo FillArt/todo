@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState} from 'react';
 import Box from '@mui/material/Box';
 import {BaseInput} from "../../components/Input/Input";
 import {ButtonBase} from "../../components/Button/Button";
@@ -7,10 +7,13 @@ import {Filter, TodoControlProps} from "../../types/Todo";
 
 export const TodoControl = (props: TodoControlProps) => {
 
-    const {filter, setFilter} = props;
 
-    const onClickFilter = (filter: Filter) => {
-        setFilter(filter);
+    const {filter, setFilter, addNewItem} = props;
+    const [value, setValue] = useState("");
+
+    const onClickFilter = (filter: Filter) => setFilter(filter);
+    const onClickHandler = () => {
+        addNewItem(value)
     }
 
     return (
@@ -21,12 +24,12 @@ export const TodoControl = (props: TodoControlProps) => {
                 gap: '10px',
                 marginBottom: '10px',
             }}>
-                <BaseInput label={'Your task...'}/>
+                <BaseInput label={'Your task...'} value={value} setValue={setValue} />
                 <ButtonBase
-                    title={'Send'}
+                    title={'Create'}
                     color={"success"}
                     variant={'contained'}
-                    onClick={() => {alert('Send')}} />
+                    onClick={onClickHandler} />
             </Box>
 
             <ButtonGroup sx={{
@@ -52,7 +55,7 @@ export const TodoControl = (props: TodoControlProps) => {
                     title={'All Delete'}
                     color={'error'}
                     variant={'contained'}
-                    onClick={() => {alert('All Delete')}} />
+                    onClick={() => props.removeAllTasks()} />
             </ButtonGroup>
 
         </>

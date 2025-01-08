@@ -1,13 +1,15 @@
-import React, {ChangeEvent, useState} from 'react';
+import React, {ChangeEvent} from 'react';
 import TextField from "@mui/material/TextField";
 
 type BaseInputProps = {
     label: string;
+    value: string;
+    setValue: (value: string) => void;
 }
 
 export const BaseInput = (props: BaseInputProps) => {
-    const { label } = props;
-    const [value, setValue] = useState("");
+    const { label, value, setValue } = props;
+
 
     const onChangeHandler = (e: ChangeEvent<HTMLInputElement>) => setValue(e.target.value);
 
