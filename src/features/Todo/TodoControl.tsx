@@ -13,7 +13,11 @@ export const TodoControl = (props: TodoControlProps) => {
 
     const onClickFilter = (filter: Filter) => setFilter(filter);
     const onClickHandler = () => {
+        setValue("");
         addNewItem(value)
+    }
+    const onKeyUpHandler = (e: React.KeyboardEvent<HTMLDivElement>) => {
+        if (e.key === "Enter") onClickHandler()
     }
 
     return (
@@ -24,7 +28,7 @@ export const TodoControl = (props: TodoControlProps) => {
                 gap: '10px',
                 marginBottom: '10px',
             }}>
-                <BaseInput label={'Your task...'} value={value} setValue={setValue} />
+                <BaseInput label={'Your task...'} value={value} setValue={setValue} onKeyUpHandler={onKeyUpHandler}  />
                 <ButtonBase
                     title={'Create'}
                     color={"success"}
