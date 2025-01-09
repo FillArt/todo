@@ -13,6 +13,7 @@ export const TodoControl = (props: TodoControlProps) => {
 
     const onClickFilter = (filter: Filter) => setFilter(filter);
     const onClickHandler = () => {
+        setValue("");
         addNewItem(value)
     }
 
