@@ -5,7 +5,7 @@ import {TodoControl} from "./TodoControl";
 import Paper from '@mui/material/Paper';
 import { styled } from '@mui/material/styles';
 
-import {Filter} from "../../types/Todo";
+import {Filter, State} from "../../types/Todo";
 import {
     addTodo,
     changeStatusTodo,
@@ -30,6 +30,21 @@ export const Todo = () => {
     const changeItem = (id: string, title: string) => dispatchState(changeTodo(id, title))
     const changeStatusItem = (id: string, isDone: boolean) => dispatchState(changeStatusTodo(id, isDone))
     const removeAllTasks = () => dispatchState(removeAllTodo())
+
+    let filterState: State[];
+
+    switch (filter) {
+        case 'Done':
+            filterState = state.filter(el => el.isDone)
+            break;
+        case 'Active':
+            filterState = state.filter(el => !el.isDone)
+            break;
+        default:
+            filterState = state
+            break;
+    }
+
     return (
         <Container elevation={12}>
             <TodoControl
@@ -39,7 +54,7 @@ export const Todo = () => {
                 removeAllTasks={removeAllTasks}
             />
             <TodoList
-                state={state}
+                state={filterState}
                 removeItem={removeItem}
                 changeItem={changeItem}
                 changeStatusItem={changeStatusItem}
