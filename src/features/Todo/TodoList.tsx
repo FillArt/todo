@@ -5,16 +5,15 @@ import {TodoListProps} from "../../types/Todo";
 
 
 
-export const TodoList = (props: TodoListProps) => {
-    const {state} = props;
+export const TodoList: React.FC<TodoListProps> = ({state, changeStatusItem, changeItem, removeItem}) => {
     return (
         <List>
             {state && state.map(item => {
                 return <TodoItem
                         item={item}
-                        changeStatusItem={props.changeStatusItem}
-                        changeItem={props.changeItem}
-                        removeItem={props.removeItem}/>
+                        changeStatusItem={changeStatusItem}
+                        changeItem={changeItem}
+                        removeItem={removeItem}/>
             })}
         </List>
 

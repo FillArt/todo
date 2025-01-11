@@ -29,12 +29,15 @@
     "test": "react-scripts test",
     "eject": "react-scripts eject",
     "predeploy": "yarn build",
-    "deploy": "gh-pages -d build"
+    "deploy": "gh-pages -d build",
+    "storybook": "storybook dev -p 6006",
+    "build-storybook": "storybook build"
   },
   "eslintConfig": {
     "extends": [
       "react-app",
-      "react-app/jest"
+      "react-app/jest",
+      "plugin:storybook/recommended"
     ]
   },
   "browserslist": {
@@ -50,6 +53,24 @@
     ]
   },
   "devDependencies": {
-    "gh-pages": "^6.3.0"
-  }
+    "@chromatic-com/storybook": "3.2.3",
+    "@storybook/addon-actions": "^8.4.7",
+    "@storybook/addon-essentials": "^8.4.7",
+    "@storybook/addon-interactions": "^8.4.7",
+    "@storybook/addon-mdx-gfm": "8.4.7",
+    "@storybook/addon-onboarding": "^8.4.7",
+    "@storybook/blocks": "^8.4.7",
+    "@storybook/preset-create-react-app": "^8.4.7",
+    "@storybook/react": "^8.4.7",
+    "@storybook/react-webpack5": "^8.4.7",
+    "@storybook/test": "^8.4.7",
+    "@storybook/types": "^8.4.7",
+    "@types/prop-types": "^15",
+    "eslint-plugin-storybook": "^0.11.2",
+    "gh-pages": "^6.3.0",
+    "prop-types": "15.8.1",
+    "storybook": "^8.4.7",
+    "webpack": "5.97.1"
+  },
+  "packageManager": "yarn@4.6.0"
 }

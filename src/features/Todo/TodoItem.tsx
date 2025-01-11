@@ -13,8 +13,8 @@ import {TodoItemProps} from "../../types/Todo";
 import {BaseInput} from "../../components/Input/Input";
 import {ButtonIcon} from "../../components/Button/Button";
 
-export const TodoItem = (props: TodoItemProps) => {
-    const {removeItem, changeItem,  changeStatusItem, item} = props;
+export const TodoItem: React.FC<TodoItemProps> = ({removeItem, changeItem, changeStatusItem, item}) => {
+
     const [changeMode, setMode] = React.useState(false);
     const [changeValue, setChangeValue] = React.useState(item.title);
 
@@ -30,26 +30,27 @@ export const TodoItem = (props: TodoItemProps) => {
 
 
     return (
-            <ListItem>
-                {changeMode ?
-                    <BaseInput label={''} value={changeValue} setValue={setChangeValue} /> :
-                    <ListItemText style={ item.isDone && !changeMode
-                        ? { textDecoration: "line-through" }
-                        : undefined }>
-                        {item.title}
-                    </ListItemText>}
+        <ListItem>
+            {changeMode ?
+                <BaseInput label={''} value={changeValue} setValue={setChangeValue}/> :
+                <ListItemText style={item.isDone && !changeMode
+                    ? {textDecoration: "line-through"}
+                    : undefined}>
+                    {item.title}
+                </ListItemText>}
 
             <ButtonGroup>
                 {!changeMode ? (
                     <>
-                    <ButtonIcon color="primary" onClick={() => setMode(true)}><EditIcon /></ButtonIcon>
-                    <ButtonIcon color="error" onClick={() => removeItem(item.id) }><DeleteIcon /></ButtonIcon>
+                        <ButtonIcon color="primary" onClick={() => setMode(true)}><EditIcon/></ButtonIcon>
+                        <ButtonIcon color="error" onClick={() => removeItem(item.id)}><DeleteIcon/></ButtonIcon>
                     </>
-                    ) : null
+                ) : null
 
                 }
 
-                <ButtonIcon color="success" onClick={() =>  (changeMode ? changeItemHandler(item.id, changeValue) : changeStatusItemHandler(item.id, !item.isDone) )}><CheckIcon /></ButtonIcon>
+                <ButtonIcon color="success"
+                            onClick={() => (changeMode ? changeItemHandler(item.id, changeValue) : changeStatusItemHandler(item.id, !item.isDone))}><CheckIcon/></ButtonIcon>
             </ButtonGroup>
         </ListItem>
     );
