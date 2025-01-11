@@ -5,7 +5,7 @@ interface MainLayoutProps {
     children: React.ReactNode;
 }
 
-export const Home: React.FC<MainLayoutProps> = (props: MainLayoutProps) => {
+export const Home = (props: MainLayoutProps) => {
 
     const { children } = props;
 

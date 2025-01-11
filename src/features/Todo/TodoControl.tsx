@@ -5,8 +5,10 @@ import {ButtonBase} from "../../components/Button/Button";
 import ButtonGroup from '@mui/material/ButtonGroup';
 import {Filter, TodoControlProps} from "../../types/Todo";
 
-export const TodoControl: React.FC<TodoControlProps> = ({filter, setFilter, addNewItem, removeAllTasks}) => {
+export const TodoControl = (props: TodoControlProps) => {
 
+
+    const {filter, setFilter, addNewItem} = props;
     const [value, setValue] = useState("");
 
     const onClickFilter = (filter: Filter) => setFilter(filter);
@@ -57,7 +59,7 @@ export const TodoControl: React.FC<TodoControlProps> = ({filter, setFilter, addN
                     title={'All Delete'}
                     color={'error'}
                     variant={'contained'}
-                    onClick={() => removeAllTasks()} />
+                    onClick={() => props.removeAllTasks()} />
             </ButtonGroup>
 
         </>
