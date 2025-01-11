@@ -7,14 +7,15 @@ import {Filter, TodoControlProps} from "../../types/Todo";
 
 export const TodoControl = (props: TodoControlProps) => {
 
-
     const {filter, setFilter, addNewItem} = props;
     const [value, setValue] = useState("");
 
     const onClickFilter = (filter: Filter) => setFilter(filter);
     const onClickHandler = () => {
-        setValue("");
-        addNewItem(value)
+        if(value.trim()){
+            setValue("");
+            addNewItem(value)
+        }
     }
     const onKeyUpHandler = (e: React.KeyboardEvent<HTMLDivElement>) => {
         if (e.key === "Enter") onClickHandler()
