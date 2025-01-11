@@ -16,8 +16,7 @@ type IconButtonProps = {
     color: "inherit" | "default" | "primary" | "secondary" | "error" | "info" | "success" | "warning" | undefined
 }
 
-export const ButtonBase = (props: BaseButtonProps) => {
-    const { title, onClick, variant, color, disabled = false} = props;
+export const ButtonBase: React.FC<BaseButtonProps> = ({ title, onClick, variant, color, disabled = false}) => {
     const onClickHandler = () => onClick();
 
     return <Button disabled={disabled} onClick={onClickHandler} color={color} variant={variant}>{title}</Button>;
