@@ -8,7 +8,9 @@ type BaseInputProps = {
     onKeyUpHandler?: (e: React.KeyboardEvent<HTMLDivElement>) => void;
 }
 
-export const BaseInput: React.FC<BaseInputProps> = ({ label, value, setValue, onKeyUpHandler }) => {
+export const BaseInput = (props: BaseInputProps) => {
+    const { label, value, setValue, onKeyUpHandler } = props;
+
 
     const onChangeHandler = (e: ChangeEvent<HTMLInputElement>) => setValue(e.target.value);
 
