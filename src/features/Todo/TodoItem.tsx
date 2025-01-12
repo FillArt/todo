@@ -3,6 +3,7 @@ import React from 'react';
 import EditIcon from "@mui/icons-material/Edit";
 import DeleteIcon from "@mui/icons-material/Delete";
 import CheckIcon from "@mui/icons-material/Check";
+import ClearIcon from '@mui/icons-material/Clear';
 
 import ListItemText from "@mui/material/ListItemText"
 import ButtonGroup from "@mui/material/ButtonGroup";
@@ -49,7 +50,12 @@ export const TodoItem = (props: TodoItemProps) => {
 
                 }
 
-                <ButtonIcon color="success" onClick={() =>  (changeMode ? changeItemHandler(item.id, changeValue) : changeStatusItemHandler(item.id, !item.isDone) )}><CheckIcon /></ButtonIcon>
+                <ButtonIcon color={item.isDone ? 'error' : 'success'}
+                            onClick={() =>  (changeMode ? changeItemHandler(item.id, changeValue) : changeStatusItemHandler(item.id, !item.isDone) )}>
+
+                    {item.isDone ? <ClearIcon /> : <CheckIcon /> }
+
+                </ButtonIcon>
             </ButtonGroup>
         </ListItem>
     );
