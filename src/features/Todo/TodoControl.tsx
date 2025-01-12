@@ -34,6 +34,7 @@ export const TodoControl = (props: TodoControlProps) => {
                     title={'Create'}
                     color={"success"}
                     variant={'contained'}
+                    disabled={!value}
                     onClick={onClickHandler} />
             </Box>
 
