@@ -4,6 +4,7 @@ export type Filter = 'All' | 'Active' | 'Done';
 
 export type TodoControlProps = {
     filter: Filter;
+    stateStatus: boolean;
     setFilter: (filter: Filter) => void;
     addNewItem: (title: string) => void,
     removeAllTasks: () => void,

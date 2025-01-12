@@ -7,7 +7,7 @@ import {Filter, TodoControlProps} from "../../types/Todo";
 
 export const TodoControl = (props: TodoControlProps) => {
 
-    const {filter, setFilter, addNewItem} = props;
+    const {filter, stateStatus, setFilter, addNewItem} = props;
     const [value, setValue] = useState("");
 
     const onClickFilter = (filter: Filter) => setFilter(filter);
@@ -61,6 +61,7 @@ export const TodoControl = (props: TodoControlProps) => {
                     title={'All Delete'}
                     color={'error'}
                     variant={'contained'}
+                    disabled={!stateStatus}
                     onClick={() => props.removeAllTasks()} />
             </ButtonGroup>
 
