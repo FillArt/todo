@@ -38,33 +38,34 @@ export const TodoControl = (props: TodoControlProps) => {
                     onClick={onClickHandler} />
             </Box>
 
-            <ButtonGroup sx={{
-                display: 'flex',
-                justifyContent: 'center',
-            }} variant="outlined" aria-label="Basic button group">
-                <ButtonBase
-                    title={'All'}
-                    variant={filter === 'All' ? 'contained' : 'outlined'}
-                    onClick={() => {onClickFilter('All')}} />
+            {stateStatus &&
+                <ButtonGroup sx={{
+                    display: 'flex',
+                    justifyContent: 'center',
+                }} variant="outlined" aria-label="Basic button group">
+                    <ButtonBase
+                        title={'All'}
+                        variant={filter === 'All' ? 'contained' : 'outlined'}
+                        onClick={() => {onClickFilter('All')}} />
 
-                <ButtonBase
-                    title={'Active'}
-                    variant={filter === 'Active' ? 'contained' : 'outlined'}
-                    onClick={() => {onClickFilter('Active')}} />
+                    <ButtonBase
+                        title={'Active'}
+                        variant={filter === 'Active' ? 'contained' : 'outlined'}
+                        onClick={() => {onClickFilter('Active')}} />
 
-                <ButtonBase
-                    title={'Done'}
-                    variant={filter === 'Done' ? 'contained' : 'outlined'}
-                    onClick={() => {onClickFilter('Done')}} />
+                    <ButtonBase
+                        title={'Done'}
+                        variant={filter === 'Done' ? 'contained' : 'outlined'}
+                        onClick={() => {onClickFilter('Done')}} />
 
-                <ButtonBase
-                    title={'All Delete'}
-                    color={'error'}
-                    variant={'contained'}
-                    disabled={!stateStatus}
-                    onClick={() => props.removeAllTasks()} />
-            </ButtonGroup>
-
+                    <ButtonBase
+                        title={'All Delete'}
+                        color={'error'}
+                        variant={'contained'}
+                        disabled={!stateStatus}
+                        onClick={() => props.removeAllTasks()} />
+                </ButtonGroup>
+            }
         </>
 
     );

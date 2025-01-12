@@ -1,4 +1,4 @@
-import React, {useReducer, useState} from 'react';
+import React, {useEffect, useReducer, useState} from 'react';
 import {TodoList} from "./TodoList";
 import {TodoControl} from "./TodoControl";
 
@@ -6,6 +6,7 @@ import Paper from '@mui/material/Paper';
 import { styled } from '@mui/material/styles';
 
 import {Filter, State} from "../../types/Todo";
+
 import {
     addTodo,
     changeStatusTodo,
@@ -21,15 +22,25 @@ const Container = styled(Paper)(({ theme }) => ({
     ...theme.typography.body2,
 }));
 
+const initState = (): State[] => {
+    const localState = localStorage.getItem('local-state');
+    return localState ? JSON.parse(localState) : [];
+};
+
 export const Todo = () => {
     const [filter, setFilter] = useState<Filter>('All');
-    const [state, dispatchState] = useReducer(todoReducer, [])
+    const [state, dispatchState] = useReducer(todoReducer, [], initState)
 
     const addNewItem = (title: string) => dispatchState(addTodo(title))
     const removeItem = (id: string) => dispatchState(removeTodo(id))
     const changeItem = (id: string, title: string) => dispatchState(changeTodo(id, title))
     const changeStatusItem = (id: string, isDone: boolean) => dispatchState(changeStatusTodo(id, isDone))
     const removeAllTasks = () => dispatchState(removeAllTodo())
+
+    useEffect(() => {
+        localStorage.setItem('local-state', JSON.stringify(state));
+    }, [state]);
+
 
     let filterState: State[];
 
