@@ -15,7 +15,7 @@ import {BaseInput} from "../../components/Input/Input";
 import {ButtonIcon} from "../../components/Button/Button";
 
 export const TodoItem = (props: TodoItemProps) => {
-    const {removeItem, changeItem,  changeStatusItem, item} = props;
+    const {removeItem, changeItem,  changeStatusItem, item, tabIndex} = props;
     const [changeMode, setMode] = React.useState(false);
     const [changeValue, setChangeValue] = React.useState(item.title);
 
@@ -33,9 +33,24 @@ export const TodoItem = (props: TodoItemProps) => {
         if(e.key === "Enter") { changeItemHandler(item.id, e.target.value) }
     }
 
+    const onFocusHandler = (e: any) => {
+        if(e.key === "Enter") { changeStatusItemHandler(item.id, !item.isDone)}
+        if (e.key === "Delete") { removeItem(item.id) }
+        if (e.key === " ") {
+            setMode(true)
+        }
+    }
+
 
     return (
-            <ListItem>
+            <ListItem sx={{
+                '&:focus': {
+                    outline: '2px solid green',
+                    borderRadius: '5px',
+                    outlineOffset: '2px',
+                },
+            }} tabIndex={tabIndex} onKeyDown={onFocusHandler}>
+
                 {changeMode ?
                     <BaseInput label={''} value={changeValue} setValue={setChangeValue} onKeyUpHandler={changeItemKeyupHandler} /> :
                     <ListItemText style={ item.isDone && !changeMode
@@ -59,7 +74,7 @@ export const TodoItem = (props: TodoItemProps) => {
 
                     {item.isDone ? <ClearIcon /> : <CheckIcon /> }
 
-                </ButtonIcon>
+                </ButtonIcon>ч
             </ButtonGroup>
         </ListItem>
     );

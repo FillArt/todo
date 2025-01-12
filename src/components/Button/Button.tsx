@@ -20,13 +20,13 @@ export const ButtonBase = (props: BaseButtonProps) => {
     const { title, onClick, variant, color, disabled = false} = props;
     const onClickHandler = () => onClick();
 
-    return <Button disabled={disabled} onClick={onClickHandler} color={color} variant={variant}>{title}</Button>;
+    return <Button disabled={disabled} tabIndex={-1} onClick={onClickHandler} color={color} variant={variant}>{title}</Button>;
 };
 
 export const ButtonIcon = (props: IconButtonProps) => {
     const {children, color, onClick} = props;
     const onClickHandler = () => onClick();
 
-    return <IconButton onClick={onClickHandler} color={color}>{children}</IconButton>
+    return <IconButton tabIndex={-1} onClick={onClickHandler} color={color}>{children}</IconButton>
 
 }
