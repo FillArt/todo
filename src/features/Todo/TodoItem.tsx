@@ -29,11 +29,15 @@ export const TodoItem = (props: TodoItemProps) => {
         console.log(item)
     }
 
+    const changeItemKeyupHandler = (e: any) => {
+        if(e.key === "Enter") { changeItemHandler(item.id, e.target.value) }
+    }
+
 
     return (
             <ListItem>
                 {changeMode ?
-                    <BaseInput label={''} value={changeValue} setValue={setChangeValue} /> :
+                    <BaseInput label={''} value={changeValue} setValue={setChangeValue} onKeyUpHandler={changeItemKeyupHandler} /> :
                     <ListItemText style={ item.isDone && !changeMode
                         ? { textDecoration: "line-through" }
                         : undefined }>
