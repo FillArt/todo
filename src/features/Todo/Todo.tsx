@@ -48,6 +48,7 @@ export const Todo = () => {
     return (
         <Container elevation={12}>
             <TodoControl
+                stateStatus={Boolean(state.length > 0)}
                 filter={filter}
                 setFilter={setFilter}
                 addNewItem={addNewItem}

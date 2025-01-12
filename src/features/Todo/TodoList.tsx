@@ -11,6 +11,7 @@ export const TodoList = (props: TodoListProps) => {
         <List>
             {state && state.map(item => {
                 return <TodoItem
+                        key={item.id}
                         item={item}
                         changeStatusItem={props.changeStatusItem}
                         changeItem={props.changeItem}
