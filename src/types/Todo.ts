@@ -20,6 +20,7 @@ export type TodoListProps = {
 export type TodoItemProps = {
     item: State
     removeItem: (id: string) => void,
+    tabIndex: number,
     changeItem: (id: string, title: string) => void,
     changeStatusItem: (id: string, isDone: boolean) => void,
 }
