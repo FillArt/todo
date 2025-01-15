@@ -15,18 +15,24 @@ import {BaseInput} from "../../components/Input/Input";
 import {ButtonIcon} from "../../components/Button/Button";
 
 export const TodoItem = (props: TodoItemProps) => {
-    const {removeItem, changeItem,  changeStatusItem, item, tabIndex} = props;
+    const {removeItem, changeItem,  changeStatusItem, setError, error, item, tabIndex} = props;
+
     const [changeMode, setMode] = React.useState(false);
     const [changeValue, setChangeValue] = React.useState(item.title);
 
     const changeItemHandler = (id: string, title: string) => {
+        if(!title) {
+            setError(true)
+            return;
+        }
+
         setMode(false);
+        setError(false);
         changeItem(id, title)
     }
 
     const changeStatusItemHandler = (id: string, status: boolean) => {
         changeStatusItem(id, status)
-        console.log(item)
     }
 
     const changeItemKeyupHandler = (e: any) => {
@@ -34,7 +40,9 @@ export const TodoItem = (props: TodoItemProps) => {
     }
 
     const onFocusHandler = (e: any) => {
-        if(e.key === "Enter") { changeStatusItemHandler(item.id, !item.isDone)}
+        if(e.key === "Enter" && !changeMode) {
+            changeStatusItemHandler(item.id, !item.isDone)
+        }
         if (e.key === "Delete") { removeItem(item.id) }
         if (e.key === " ") {
             setMode(true)
@@ -52,7 +60,7 @@ export const TodoItem = (props: TodoItemProps) => {
             }} tabIndex={tabIndex} onKeyDown={onFocusHandler}>
 
                 {changeMode ?
-                    <BaseInput label={''} value={changeValue} setValue={setChangeValue} onKeyUpHandler={changeItemKeyupHandler} /> :
+                    <BaseInput label={''} error={error} value={changeValue} setValue={setChangeValue} onKeyUpHandler={changeItemKeyupHandler} /> :
                     <ListItemText style={ item.isDone && !changeMode
                         ? { textDecoration: "line-through" }
                         : undefined }>

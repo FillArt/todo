@@ -15,6 +15,8 @@ export const TodoList = (props: TodoListProps) => {
                     changeStatusItem={props.changeStatusItem}
                     changeItem={props.changeItem}
                     removeItem={props.removeItem}
+                    setError={props.setError}
+                    error={props.error}
                 />
             ))}
         </List>
