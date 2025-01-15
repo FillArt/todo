@@ -1,5 +1,5 @@
 import {State} from "../types/Todo";
-import {addTodo, removeTodo, todoReducer} from "./todoReducer";
+import {addTodo, changeTodo, removeTodo, todoReducer} from "./todoReducer";
 
 export {};
 
@@ -22,5 +22,15 @@ describe('Test for TodoReducer', () => {
 
         expect(newState).toHaveLength(0);
     });
+
+    test('Change item', () => {
+        const initialState: State[] = [{id: '1', title: 'Hello World!', isDone: false}]
+        const action = changeTodo('1', 'Hi Bro!')
+        const newState: State[] = todoReducer(initialState, action)
+
+        expect(newState).toHaveLength(1);
+        expect(newState[0].title).toBe('Hi Bro!');
+        expect(newState[0].isDone).toBe(false);
+    })
 
 })
