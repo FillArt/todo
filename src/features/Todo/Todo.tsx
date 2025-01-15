@@ -1,4 +1,4 @@
-import React, {useEffect, useReducer, useState} from 'react';
+import React, {useCallback, useEffect, useReducer, useState} from 'react';
 import {TodoList} from "./TodoList";
 import {TodoControl} from "./TodoControl";
 
@@ -34,12 +34,11 @@ export const Todo = () => {
     const [state, dispatchState] = useReducer(todoReducer, [], initState)
     const [error, setError] = useState(false);
 
-
-    const addNewItem = (title: string) => dispatchState(addTodo(title))
-    const removeItem = (id: string) => dispatchState(removeTodo(id))
-    const changeItem = (id: string, title: string) => dispatchState(changeTodo(id, title))
-    const changeStatusItem = (id: string, isDone: boolean) => dispatchState(changeStatusTodo(id, isDone))
-    const removeAllTasks = () => dispatchState(removeAllTodo())
+    const addNewItem =  useCallback((title: string) => {dispatchState(addTodo(title))}, [dispatchState])
+    const removeItem =  useCallback((id: string) => {dispatchState(removeTodo(id))}, [dispatchState])
+    const changeItem =  useCallback((id: string, title: string) => {dispatchState(changeTodo(id, title))}, [dispatchState])
+    const changeStatusItem =  useCallback((id: string, isDone: boolean) => {dispatchState(changeStatusTodo(id, isDone))}, [dispatchState])
+    const removeAllTasks =  useCallback(() => {dispatchState(removeAllTodo())}, [dispatchState])
 
     useEffect(() => {
         localStorage.setItem('local-state', JSON.stringify(state));
