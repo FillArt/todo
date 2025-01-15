@@ -5,12 +5,12 @@ type BaseInputProps = {
     label: string;
     value: string;
     setValue: (value: string) => void;
+    error?: boolean;
     onKeyUpHandler?: (e: React.KeyboardEvent<HTMLDivElement>) => void;
 }
 
 export const BaseInput = (props: BaseInputProps) => {
-    const { label, value, setValue, onKeyUpHandler } = props;
-
+    const { label, value, setValue, onKeyUpHandler, error = false } = props;
 
     const onChangeHandler = (e: ChangeEvent<HTMLInputElement>) => setValue(e.target.value);
 
@@ -18,6 +18,7 @@ export const BaseInput = (props: BaseInputProps) => {
         style={{ width: '100%' }}
         id="outlined-basic" value={value}
         label={label}
+        error={error}
         onChange={onChangeHandler}
         onKeyUp={(e) => onKeyUpHandler ? onKeyUpHandler(e) : null}
         size="small"

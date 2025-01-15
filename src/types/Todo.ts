@@ -13,6 +13,8 @@ export type TodoControlProps = {
 export type TodoListProps = {
     state: State[]
     removeItem: (id: string) => void,
+    setError: (error: boolean) => void;
+    error: boolean;
     changeItem: (id: string, title: string) => void,
     changeStatusItem: (id: string, isDone: boolean) => void,
 }
@@ -22,6 +24,8 @@ export type TodoItemProps = {
     removeItem: (id: string) => void,
     tabIndex: number,
     changeItem: (id: string, title: string) => void,
+    setError: (error: boolean) => void;
+    error: boolean;
     changeStatusItem: (id: string, isDone: boolean) => void,
 }
 

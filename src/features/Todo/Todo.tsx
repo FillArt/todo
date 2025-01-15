@@ -32,6 +32,8 @@ const initState = (): State[] => {
 export const Todo = () => {
     const [filter, setFilter] = useState<Filter>('All');
     const [state, dispatchState] = useReducer(todoReducer, [], initState)
+    const [error, setError] = useState(false);
+
 
     const addNewItem = (title: string) => dispatchState(addTodo(title))
     const removeItem = (id: string) => dispatchState(removeTodo(id))
@@ -67,7 +69,6 @@ export const Todo = () => {
                 addNewItem={addNewItem}
                 removeAllTasks={removeAllTasks}
             />
-
             {filterState.length === 0 ? (
                 <Box display="flex" justifyContent="center" alignItems="center" height="100%">
                     <h2>Empty...</h2>
@@ -78,8 +79,10 @@ export const Todo = () => {
                     removeItem={removeItem}
                     changeItem={changeItem}
                     changeStatusItem={changeStatusItem}
+                    setError={setError}
+                    error={error}
                 />
             )}
-        </Container>
+            </Container>
     );
 };
