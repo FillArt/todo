@@ -6,7 +6,7 @@ type BaseInputProps = {
     value: string;
     setValue: (value: string) => void;
     error?: boolean;
-    onKeyUpHandler?: (e: React.KeyboardEvent<HTMLDivElement>) => void;
+    onKeyUpHandler?: (e: any) => void;
 }
 
 export const BaseInput = (props: BaseInputProps) => {
