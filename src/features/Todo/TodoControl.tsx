@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useCallback, useState} from 'react';
 import Box from '@mui/material/Box';
 import {BaseInput} from "../../components/Input/Input";
 import {ButtonBase} from "../../components/Button/Button";
@@ -11,15 +11,17 @@ export const TodoControl = (props: TodoControlProps) => {
     const [value, setValue] = useState("");
 
     const onClickFilter = (filter: Filter) => setFilter(filter);
-    const onClickHandler = () => {
+
+    const onClickHandler = useCallback(() => {
         if(value.trim()){
             setValue("");
             addNewItem(value)
         }
-    }
-    const onKeyUpHandler = (e: React.KeyboardEvent<HTMLDivElement>) => {
+    }, [value, addNewItem]);
+
+    const onKeyUpHandler = useCallback((e: React.KeyboardEvent<HTMLDivElement>) => {
         if (e.key === "Enter") onClickHandler()
-    }
+    }, [onClickHandler])
 
     return (
         <>
