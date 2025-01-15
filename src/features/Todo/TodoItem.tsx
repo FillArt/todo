@@ -26,7 +26,6 @@ export const TodoItem = (props: TodoItemProps) => {
 
     const changeStatusItemHandler = (id: string, status: boolean) => {
         changeStatusItem(id, status)
-        console.log(item)
     }
 
     const changeItemKeyupHandler = (e: any) => {

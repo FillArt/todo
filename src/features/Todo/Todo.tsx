@@ -3,7 +3,8 @@ import {TodoList} from "./TodoList";
 import {TodoControl} from "./TodoControl";
 
 import Paper from '@mui/material/Paper';
-import { styled } from '@mui/material/styles';
+import Box from '@mui/material/Box';
+import {styled} from '@mui/material/styles';
 
 import {Filter, State} from "../../types/Todo";
 
@@ -16,7 +17,8 @@ import {
     todoReducer
 } from "../../reducers/todoReducer";
 
-const Container = styled(Paper)(({ theme }) => ({
+
+const Container = styled(Paper)(({theme}) => ({
     width: 350,
     padding: theme.spacing(2),
     ...theme.typography.body2,
@@ -65,12 +67,19 @@ export const Todo = () => {
                 addNewItem={addNewItem}
                 removeAllTasks={removeAllTasks}
             />
-            <TodoList
-                state={filterState}
-                removeItem={removeItem}
-                changeItem={changeItem}
-                changeStatusItem={changeStatusItem}
-            />
+
+            {filterState.length === 0 ? (
+                <Box display="flex" justifyContent="center" alignItems="center" height="100%">
+                    <h2>Empty...</h2>
+                </Box>
+            ) : (
+                <TodoList
+                    state={filterState}
+                    removeItem={removeItem}
+                    changeItem={changeItem}
+                    changeStatusItem={changeStatusItem}
+                />
+            )}
         </Container>
     );
 };
