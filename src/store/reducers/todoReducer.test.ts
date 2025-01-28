@@ -1,4 +1,4 @@
-import {State} from "../types/Todo";
+import {State} from "../../types/Todo";
 import {addTodo, changeStatusTodo, changeTodo, removeAllTodo, removeTodo, todoReducer} from "./todoReducer";
 
 export {};

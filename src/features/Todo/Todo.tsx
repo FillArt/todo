@@ -15,7 +15,7 @@ import {
     removeAllTodo,
     removeTodo,
     todoReducer
-} from "../../reducers/todoReducer";
+} from "../../store/reducers/todoReducer";
 
 
 const Container = styled(Paper)(({theme}) => ({

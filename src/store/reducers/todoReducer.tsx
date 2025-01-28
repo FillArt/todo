@@ -1,4 +1,4 @@
-import {State, TsarType} from "../types/Todo";
+import {State, TsarType} from "../../types/Todo";
 import {v1} from "uuid";
 
 export const todoReducer = (state: State[], action: TsarType): State[] => {
