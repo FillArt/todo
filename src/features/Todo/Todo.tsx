@@ -16,6 +16,8 @@ import {
     removeTodo,
     todoReducer
 } from "../../store/reducers/todoReducer";
+import {useDispatch, useSelector} from "react-redux";
+import {RootState} from "../../store/store";
 
 
 const Container = styled(Paper)(({theme}) => ({
@@ -30,39 +32,43 @@ const initState = (): State[] => {
 };
 
 export const Todo = () => {
+    // const [state, dispatchState] = useReducer(todoReducer, [], initState)
+
+    const stateTodo = useSelector<RootState, State[]>(state => state.todo )
+    const dispatch = useDispatch();
+
     const [filter, setFilter] = useState<Filter>('All');
-    const [state, dispatchState] = useReducer(todoReducer, [], initState)
     const [error, setError] = useState(false);
 
-    const addNewItem =  useCallback((title: string) => {dispatchState(addTodo(title))}, [dispatchState])
-    const removeItem =  useCallback((id: string) => {dispatchState(removeTodo(id))}, [dispatchState])
-    const changeItem =  useCallback((id: string, title: string) => {dispatchState(changeTodo(id, title))}, [dispatchState])
-    const changeStatusItem =  useCallback((id: string, isDone: boolean) => {dispatchState(changeStatusTodo(id, isDone))}, [dispatchState])
-    const removeAllTasks =  useCallback(() => {dispatchState(removeAllTodo())}, [dispatchState])
+    const addNewItem =  useCallback((title: string) => {dispatch(addTodo(title))}, [dispatch])
+    const removeItem =  useCallback((id: string) => {dispatch(removeTodo(id))}, [dispatch])
+    const changeItem =  useCallback((id: string, title: string) => {dispatch(changeTodo(id, title))}, [dispatch])
+    const changeStatusItem =  useCallback((id: string, isDone: boolean) => {dispatch(changeStatusTodo(id, isDone))}, [dispatch])
+    const removeAllTasks =  useCallback(() => {dispatch(removeAllTodo())}, [dispatch])
 
-    useEffect(() => {
-        localStorage.setItem('local-state', JSON.stringify(state));
-    }, [state]);
+    // useEffect(() => {
+    //     localStorage.setItem('local-state', JSON.stringify(state));
+    // }, [state]);
 
 
     let filterState: State[];
 
     switch (filter) {
         case 'Done':
-            filterState = state.filter(el => el.isDone)
+            filterState = stateTodo.filter(el => el.isDone)
             break;
         case 'Active':
-            filterState = state.filter(el => !el.isDone)
+            filterState = stateTodo.filter(el => !el.isDone)
             break;
         default:
-            filterState = state
+            filterState = stateTodo
             break;
     }
 
     return (
         <Container elevation={12}>
             <TodoControl
-                stateStatus={Boolean(state.length > 0)}
+                stateStatus={Boolean(stateTodo.length > 0)}
                 filter={filter}
                 setFilter={setFilter}
                 addNewItem={addNewItem}
