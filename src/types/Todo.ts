@@ -1,4 +1,4 @@
-import {addTodo, changeStatusTodo, changeTodo, removeAllTodo, removeTodo} from "../reducers/todoReducer";
+import {addTodo, changeStatusTodo, changeTodo, removeAllTodo, removeTodo} from "../store/reducers/todoReducer";
 
 export type Filter = 'All' | 'Active' | 'Done';
 
