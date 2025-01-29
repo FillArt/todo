@@ -1,7 +1,9 @@
 import {State, TsarType} from "../../types/Todo";
 import {v1} from "uuid";
 
-export const todoReducer = (state: State[], action: TsarType): State[] => {
+const initialState: State[] = []
+
+export const todoReducer = (state: State[] = initialState, action: TsarType): State[] => {
     switch (action.type) {
         case 'ADD-TODO': {
             const newItem = {
